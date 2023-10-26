@@ -46,8 +46,24 @@ public class GameOfLifePinningTest {
 		 * https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life#/media/File:Game_of_life_blinker.gif
 		 * Start from the vertical bar on a 5X5 matrix as shown in the GIF.
 		 */
+
+		 //need to mock the cell objects in the 2d array
+		 Cell[][] cells = new Cell[5][5];
+		 
+		 for(int i = 0; i < 5; i++) {
+			for(int j = 0; j < 5; j++) {
+				cells[i][j] = Mockito.mock(Cell.class);
+				if(i == 2 && (j == 1 || j == 2 || j == 3)) {
+					Mockito.when(cells[i][j].getAlive()).thenReturn(true);
+				}
+				else {
+					Mockito.when(cells[i][j].getAlive()).thenReturn(false);
+				}
+			}
+		 }
 	}
 
 	/* TODO: Write the three pinning unit tests for the three optimized methods */
+
 
 }
