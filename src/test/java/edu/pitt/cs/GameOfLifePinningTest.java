@@ -71,7 +71,17 @@ public class GameOfLifePinningTest {
 
 	@Test
 	public void iterateCellTest() {
-		assertTrue(true);
+		for(int i = 0; i < 5; i++) {
+			for(int j = 0; j < 5; j++) {
+				boolean res = panel.iterateCell(i, j);
+				if(j == 2 && (i == 1 || i == 2 || i == 3)) {
+					assertTrue(res);
+				}
+				else {
+					assertFalse(res);
+				}
+			}
+		}
 	}
 
 	@Test 
