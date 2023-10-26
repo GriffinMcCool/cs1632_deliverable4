@@ -61,9 +61,27 @@ public class GameOfLifePinningTest {
 				}
 			}
 		 }
+
+		 MainPanel panel = new MainPanel(cells);
 	}
 
 	/* TODO: Write the three pinning unit tests for the three optimized methods */
+
+	@Test
+	public void iterateCellTest() {
+		assertTrue(true);
+	}
+
+	@Test 
+	public void calculateNextIterationTest() {
+		assertTrue(true);
+	}
+
+	@Test
+	public void toStringTest() {
+		assertTrue(true);
+	}
+
 
 
 }
