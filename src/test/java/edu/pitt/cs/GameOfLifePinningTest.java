@@ -35,6 +35,8 @@ public class GameOfLifePinningTest {
 	 */
 
 	/* TODO: Declare all variables required for the test fixture. */
+	MainPanel panel;
+	Cell[][] cells;
 
 	@Before
 	public void setUp() {
@@ -48,7 +50,7 @@ public class GameOfLifePinningTest {
 		 */
 
 		 //need to mock the cell objects in the 2d array
-		 Cell[][] cells = new Cell[5][5];
+		 cells = new Cell[5][5];
 		 
 		 for(int i = 0; i < 5; i++) {
 			for(int j = 0; j < 5; j++) {
@@ -62,7 +64,7 @@ public class GameOfLifePinningTest {
 			}
 		 }
 
-		 MainPanel panel = new MainPanel(cells);
+		panel = new MainPanel(cells);
 	}
 
 	/* TODO: Write the three pinning unit tests for the three optimized methods */
@@ -74,7 +76,17 @@ public class GameOfLifePinningTest {
 
 	@Test 
 	public void calculateNextIterationTest() {
-		assertTrue(true);
+		panel.calculateNextIteration();
+		for(int i = 0; i < 5; i++) {
+			for(int j = 0; j < 5; j++) {
+				if(j == 2 && (i == 1 || i == 2 || i == 3)) {
+					Mockito.verify(cells[i][j]).setAlive(true);
+				}
+				else {
+					Mockito.verify(cells[i][j]).setAlive(false);
+				}
+			}
+		}
 	}
 
 	@Test
