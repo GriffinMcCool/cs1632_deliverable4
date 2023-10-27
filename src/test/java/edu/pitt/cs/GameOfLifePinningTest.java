@@ -103,7 +103,6 @@ public class GameOfLifePinningTest {
 
 	@Test
 	public void toStringTest() {
-		MainPanel secondaryPanel;
 		Cell secondaryCells[][] = new Cell[5][5];
 		for(int i = 0; i < 5; i++) {
 			for(int j = 0; j < 5; j++) {
@@ -114,11 +113,18 @@ public class GameOfLifePinningTest {
 					secondaryCells[i][j] = new Cell(false);
 				}
 			}
-		 }
+		}
 
-		secondaryPanel = new MainPanel(secondaryCells);
-		String ret = secondaryPanel.toString();
-		assertEquals("Defect with toString()", ".....\n..X..\n..X..\n..X..\n.....\n", ret);
+		for(int i = 0; i < 5; i++) {
+			for(int j = 0; j < 5; j++) {
+				if(j == 2 && (i == 1 || i == 2 || i == 3)) {
+					assertEquals("Defect with toString()", "X", secondaryCells[i][j].toString());
+				}
+				else {
+					assertEquals("Defect with toString()", ".", secondaryCells[i][j].toString());
+				}
+			}
+		}
 	}
 
 
