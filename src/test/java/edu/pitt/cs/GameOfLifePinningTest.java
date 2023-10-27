@@ -55,11 +55,13 @@ public class GameOfLifePinningTest {
 		 for(int i = 0; i < 5; i++) {
 			for(int j = 0; j < 5; j++) {
 				cells[i][j] = Mockito.mock(Cell.class);
-				if(i == 2 && (j == 1 || j == 2 || j == 3)) {
+				if(j == 2 && (i == 1 || i == 2 || i == 3)) {
 					Mockito.when(cells[i][j].getAlive()).thenReturn(true);
+					Mockito.when(cells[i][j].toString()).thenReturn("X");
 				}
 				else {
 					Mockito.when(cells[i][j].getAlive()).thenReturn(false);
+					Mockito.when(cells[i][j].toString()).thenReturn(".");
 				}
 			}
 		 }
@@ -74,7 +76,7 @@ public class GameOfLifePinningTest {
 		for(int i = 0; i < 5; i++) {
 			for(int j = 0; j < 5; j++) {
 				boolean res = panel.iterateCell(i, j);
-				if(j == 2 && (i == 1 || i == 2 || i == 3)) {
+				if(i == 2 && (j == 1 || j == 2 || j == 3)) {
 					assertTrue(res);
 				}
 				else {
@@ -89,7 +91,7 @@ public class GameOfLifePinningTest {
 		panel.calculateNextIteration();
 		for(int i = 0; i < 5; i++) {
 			for(int j = 0; j < 5; j++) {
-				if(j == 2 && (i == 1 || i == 2 || i == 3)) {
+				if(i == 2 && (j == 1 || j == 2 || j == 3)) {
 					Mockito.verify(cells[i][j]).setAlive(true);
 				}
 				else {
@@ -101,7 +103,22 @@ public class GameOfLifePinningTest {
 
 	@Test
 	public void toStringTest() {
-		assertTrue(true);
+		MainPanel secondaryPanel;
+		Cell secondaryCells[][] = new Cell[5][5];
+		for(int i = 0; i < 5; i++) {
+			for(int j = 0; j < 5; j++) {
+				if(j == 2 && (i == 1 || i == 2 || i == 3)) {
+					secondaryCells[i][j] = new Cell(true);
+				}
+				else {
+					secondaryCells[i][j] = new Cell(false);
+				}
+			}
+		 }
+
+		secondaryPanel = new MainPanel(secondaryCells);
+		String ret = secondaryPanel.toString();
+		assertEquals("Defect with toString()", ".....\n..X..\n..X..\n..X..\n.....\n", ret);
 	}
 
 

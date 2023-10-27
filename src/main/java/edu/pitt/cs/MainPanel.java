@@ -7,7 +7,7 @@ import java.util.*;
 public class MainPanel extends JPanel {
 
 	// Current configuration
-	private Cell[][] cells;
+	public Cell[][] cells;
 
 	// Backup configuration
 	private Cell[][] backupCells;
